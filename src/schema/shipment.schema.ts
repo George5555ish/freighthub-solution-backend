@@ -65,6 +65,17 @@ export class GetPaginatedShipmentInput {
   @Field(() => Int)
   limit: number;
 }
+
+@InputType()
+export class GetSortedShipmentInput {
+  
+  @Field(() => Boolean)
+  ascending: boolean;
+
+  @Field(() => Boolean)
+  sortOptions: boolean;
+}
+
 @InputType()
 export class DeleteShipmentInput {
   @Field()
@@ -99,4 +110,11 @@ export class GetShipmentResponse{
   
   @Field(() => [Shipment])
   totalProducts: [Shipment]
+}
+
+@InputType()
+export class SortedShipmentOptionsInput {
+
+  @Field(() => String,{nullable: true, defaultValue: "price"})
+  sortParams: string | null;
 }

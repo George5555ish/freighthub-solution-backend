@@ -1,11 +1,20 @@
-import { Arg, Authorized, Ctx, Int, Mutation, Query, Resolver } from "type-graphql";
+import {
+  Arg,
+  Authorized,
+  Ctx,
+  Int,
+  Mutation,
+  Query,
+  Resolver,
+} from "type-graphql";
 import {
   CreateShipmentInput,
   GetShipmentInput,
   DeleteShipmentInput,
   UpdateShipmentInput,
   GetShipmentResponse,
-  Shipment
+  SortedShipmentOptionsInput,
+  Shipment,
 } from "../schema/shipment.schema";
 import ShipmentService from "../services/shipment.service";
 
@@ -28,10 +37,19 @@ export default class ShipmentResolver {
 
   @Query(() => GetShipmentResponse)
   getPaginatedShipments(
-      @Arg("limit", () => Int) limit: number,
-      @Arg("page", () => Int) page: number,
+    @Arg("limit", () => Int) limit: number,
+    @Arg("page", () => Int) page: number
   ) {
-    return this.shipmentService.findPaginatedShipments(limit,page);
+    return this.shipmentService.findPaginatedShipments(limit, page);
+  }
+
+  @Query(() => GetShipmentResponse)
+  getSortedShipments(
+    @Arg("ascending", () => Boolean) ascending: boolean,
+    @Arg("sortOptions", () => SortedShipmentOptionsInput)
+    sortOptions: SortedShipmentOptionsInput
+  ) {
+    return this.shipmentService.findSortedShipments(ascending, sortOptions);
   }
 
   @Query(() => Shipment)
@@ -51,7 +69,7 @@ export default class ShipmentResolver {
     @Arg("id", () => String) id: string,
     @Arg("inputOptions", () => UpdateShipmentInput)
     inputOptions: UpdateShipmentInput
-  ){
+  ) {
     return this.shipmentService.updateProduct(id, inputOptions);
   }
 }
