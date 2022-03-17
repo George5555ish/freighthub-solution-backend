@@ -34,11 +34,12 @@ async function bootstrapServer() {
   await server.start();
 
   server.applyMiddleware({app});
-
-  app.listen({port: 4000}, () => {
+  connectToDatabase(() => {
+    app.listen({port: 4000}, () => {
+      console.log('connected to Mongo Successfully')
       console.log('App is listening on http://localhost:4000')
   });
-  connectToDatabase()
+  })
 }
 
 bootstrapServer()

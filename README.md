@@ -17,6 +17,7 @@
 
 
 ### Getting Started (Development)
+
 <N.B> Ensure you have MongoDB installed on your PC.
 
 *   Create a .env file in the root dir of folder and fill with the appropriate keys
