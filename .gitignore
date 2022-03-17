@@ -1,3 +1,8 @@
 node_modules
 .env
-.gitignore
+BACK_END_TEST.md
+Criteria.md
+db.json
+FULL_STACK.md
+.eslintignore
+.eslintrc
