@@ -6,3 +6,4 @@ db.json
 FULL_STACK.md
 .eslintignore
 .eslintrc
+dist/

@@ -6,6 +6,9 @@
   "author": "Mbajiaku George",
   "license": "MIT",
   "scripts": {
+    "postinstall": "tsc",
+    "start": "node dist/index.js",
+    "deploy": "git add . && git commit -m Heroku && git push heroku",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "lint": "eslint . --ext .ts"
   },
