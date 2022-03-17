@@ -11,7 +11,7 @@ import { resolvers } from "./resolvers";
 import { connectToDatabase } from "./db/mongodb";
 import Context from "./types/context";
 
-const port = process.env.PORT || 5000;
+// const port = process.env.PORT || 5000;
 async function bootstrapServer() {
   const schema = await buildSchema({
     resolvers,
@@ -35,12 +35,8 @@ async function bootstrapServer() {
   await server.start();
 
   server.applyMiddleware({app});
-  connectToDatabase(() => {
-    app.listen({port}, () => {
-      console.log('connected to MongoDB Successfully')
-      console.log('App is listening on http://localhost:'+port)
-  });
-  })
+  connectToDatabase(app)
+
 }
 
 bootstrapServer()

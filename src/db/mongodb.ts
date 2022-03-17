@@ -1,21 +1,24 @@
 import mongoose from "mongoose";
-import config from 'config';
+import config from "config";
 
-const MONGO_DB_URL = process.env.MONGO_DB_URL;
-export async function connectToDatabase(cb: unknown) {
+
+const port = process.env.PORT || 5000;
+
+export async function connectToDatabase(app: any) {
   try {
-    
-    if (process.env.NODE_ENV === 'production'){
-        await mongoose
-        .connect(MONGO_DB_URL, {
-          useUnifiedTopology: true,
-          useNewUrlParser: true,
-        })
-        .then(() => cb());
+    if (process.env.NODE_ENV === "production") {
+      await mongoose.connect(config.get<string>("MONGO_DB_URL")).then(() => {
+        app.listen({ port }, () => {
+          console.log("connected to MongoDB Successfully");
+        });
+      });
     } else {
-        await mongoose
-        .connect(config.get<string>('dbUri'))
-        .then(() => cb());
+      await mongoose.connect(config.get<string>("dbUri")).then(() => {
+        app.listen({ port }, () => {
+          console.log("connected to MongoDB Successfully");
+          console.log("App is listening on http://localhost:" + port);
+        });
+      });
     }
   } catch (error) {
     console.log("error from db");
