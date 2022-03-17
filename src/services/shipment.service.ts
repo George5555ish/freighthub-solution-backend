@@ -76,12 +76,12 @@ class ShipmentService {
     return ShipmentModel.findOne(input).lean();
   }
 
-  async deleteProduct(input: DeleteShipmentInput) {
+  async deleteShipment(input: DeleteShipmentInput) {
     console.log("input", input);
     await ShipmentModel.remove({ _id: input._id });
     return true;
   }
-  async updateProduct(id: string, inputOptions: UpdateShipmentInput) {
+  async updateShipment(id: string, inputOptions: UpdateShipmentInput) {
     console.log("input", inputOptions);
     await ShipmentModel.updateOne({ _id: id }, { ...inputOptions });
     const updatedProduct = await ShipmentModel.find({ _id: id });

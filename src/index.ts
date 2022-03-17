@@ -9,8 +9,6 @@ import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-co
 import { ApolloServerPluginLandingPageProductionDefault } from "apollo-server-core";
 import { resolvers } from "./resolvers";
 import { connectToDatabase } from "./db/mongodb";
-import { verifyJwt } from "./utils/jwt";
-import { User } from "./schema/user.schema";
 import Context from "./types/context";
 
 async function bootstrapServer() {
@@ -25,17 +23,7 @@ async function bootstrapServer() {
 
   const server = new ApolloServer({
     schema,
-    context: (ctx: Context) => {
-
-        const context = ctx;
-        if (ctx.req.cookies.accessToken){
-            const user = verifyJwt<User>(ctx.req.cookies.accessToken)
-
-            context.user = user;
-        }
-
-        return context;
-    },
+    context: (ctx: Context) => ctx,
     plugins: [
       process.env.NODE_ENV === "production"
         ? ApolloServerPluginLandingPageProductionDefault()

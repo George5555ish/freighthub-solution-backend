@@ -58,18 +58,18 @@ export default class ShipmentResolver {
   }
 
   @Mutation(() => Boolean)
-  deleteProduct(
+  deleteShipment(
     @Arg("input", () => DeleteShipmentInput) input: DeleteShipmentInput
   ) {
-    return this.shipmentService.deleteProduct(input);
+    return this.shipmentService.deleteShipment(input);
   }
 
   @Mutation(() => Boolean)
-  updateProduct(
+  updateShipment(
     @Arg("id", () => String) id: string,
     @Arg("inputOptions", () => UpdateShipmentInput)
     inputOptions: UpdateShipmentInput
   ) {
-    return this.shipmentService.updateProduct(id, inputOptions);
+    return this.shipmentService.updateShipment(id, inputOptions);
   }
 }

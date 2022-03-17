@@ -9,8 +9,6 @@
   - View the shipment information on a separate shipment details page
   - Update the shipment name (should persist when the page is reloaded)
 
-# Evaluation criteria
-
 ## Tech Stack
 
 * Node JS (TypeScript)
@@ -24,4 +22,4 @@
 *   Create a .env file in the root dir of folder and fill with the appropriate keys
 *   Run npm install
 *   Run npm run dev
-*   Visit http://localhost:4000 to check the Apollo Server
+*   Visit http://localhost:4000/graphql to check the Apollo Server
