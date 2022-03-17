@@ -3,11 +3,11 @@ import config from "config";
 
 
 const port = process.env.PORT || 5000;
-
+const MONGO_DB_URL: string = process.env.MONGO_DB_URL ?? '';
 export async function connectToDatabase(app: any) {
   try {
     if (process.env.NODE_ENV === "production") {
-      await mongoose.connect(config.get<string>("MONGO_DB_URL")).then(() => {
+      await mongoose.connect(MONGO_DB_URL).then(() => {
         app.listen({ port }, () => {
           console.log("connected to MongoDB Successfully");
         });
