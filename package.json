@@ -9,6 +9,7 @@
     "postinstall": "npm run build",
     "build": "tsc",
     "start": "node dist/src/index.js",
+    "prod-test": "npm run build && npm start",
     "deploy": "git add . && git commit -m Heroku && git push heroku",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "lint": "eslint . --ext .ts"
