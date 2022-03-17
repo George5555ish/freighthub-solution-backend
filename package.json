@@ -9,6 +9,9 @@
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "lint": "eslint . --ext .ts"
   },
+  "engines": {
+    "node": "15.11.0"
+  },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/config": "^0.0.41",

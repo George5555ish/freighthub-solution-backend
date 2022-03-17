@@ -1,17 +1,22 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
+import config from 'config';
 
-dotenv.config();
-
-const MONGO_DB_URL: string = process.env.MONGO_DB_URL;
+const MONGO_DB_URL = process.env.MONGO_DB_URL;
 export async function connectToDatabase(cb: unknown) {
   try {
-    await mongoose
-      .connect(MONGO_DB_URL, {
-        useUnifiedTopology: true,
-        useNewUrlParser: true,
-      })
-      .then(() => cb());
+    
+    if (process.env.NODE_ENV === 'production'){
+        await mongoose
+        .connect(MONGO_DB_URL, {
+          useUnifiedTopology: true,
+          useNewUrlParser: true,
+        })
+        .then(() => cb());
+    } else {
+        await mongoose
+        .connect(config.get<string>('dbUri'))
+        .then(() => cb());
+    }
   } catch (error) {
     console.log("error from db");
     console.error(error);
