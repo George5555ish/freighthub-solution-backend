@@ -36,7 +36,7 @@ async function bootstrapServer() {
   server.applyMiddleware({app});
   connectToDatabase(() => {
     app.listen({port: 4000}, () => {
-      console.log('connected to Mongo Successfully')
+      console.log('connected to MongoDB Atlas Successfully')
       console.log('App is listening on http://localhost:4000')
   });
   })
