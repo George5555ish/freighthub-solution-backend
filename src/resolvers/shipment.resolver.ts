@@ -1,7 +1,5 @@
 import {
   Arg,
-  Authorized,
-  Ctx,
   Int,
   Mutation,
   Query,
@@ -24,7 +22,6 @@ export default class ShipmentResolver {
     this.shipmentService = new ShipmentService();
   }
 
-  //   @Authorized()
   @Mutation(() => Shipment)
   createShipment(@Arg("input") input: CreateShipmentInput) {
     return this.shipmentService.createShipment({ ...input });
